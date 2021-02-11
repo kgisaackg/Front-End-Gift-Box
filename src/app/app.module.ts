@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { GiftBoxFormComponent } from './components/gift-box-form/gift-box-form.component';
 import { StatisticBoxComponent } from './components/statistic-box/statistic-box.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { StatisticBoxComponent } from './components/statistic-box/statistic-box.
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

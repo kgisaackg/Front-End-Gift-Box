@@ -22,7 +22,7 @@
 .input-file{
 	border: 0;
 	cursor: pointer;
-    background: #216e69;
+    background: #f8ebe5;
     max-width: 100%;
 }
 
@@ -71,5 +71,15 @@ input.example-right-align {
   /***End of for navbar*/
 
   .profile{
-    background-color: pink;
+    background-color: #7a5345;
+    color: #329caf;
+    padding: 50px;
+  }
+
+  .example-toolbar{
+    background-color: #329caf;
+  }
+
+  .profile-menu{
+    background-color: #329caf;;
   }
