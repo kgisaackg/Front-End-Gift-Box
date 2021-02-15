@@ -4,13 +4,23 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { LandingComponent } from './components/landing/landing.component';
+import { GiftBoxFormComponent } from './components/gift-box-form/gift-box-form.component';
+import { StatisticBoxComponent } from './components/statistic-box/statistic-box.component';
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LandingComponent,
+    GiftBoxFormComponent,
+    StatisticBoxComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
