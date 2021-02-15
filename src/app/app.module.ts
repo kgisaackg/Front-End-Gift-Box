@@ -8,6 +8,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { LandingComponent } from './components/landing/landing.component';
 import { GiftBoxFormComponent } from './components/gift-box-form/gift-box-form.component';
 import { StatisticBoxComponent } from './components/statistic-box/statistic-box.component';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { ShoplandingComponent } from './components/shoplanding/shoplanding.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { StatisticBoxComponent } from './components/statistic-box/statistic-box.
     AppComponent,
     LandingComponent,
     GiftBoxFormComponent,
-    StatisticBoxComponent
+    StatisticBoxComponent,
+    AboutusComponent,
+    ShoplandingComponent
   ],
   imports: [
     BrowserModule,

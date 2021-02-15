@@ -14,10 +14,7 @@
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link waves-light" mdbWavesEffect
-                            style="text-decoration: underline; color: #dd69f1d8;" (click)="homeFunction()" id="myHome"
-                            title="Go to Home Page">
-                            Home<span class="sr-only">(current)</span>
+                        <a routerLink="" class="nav-link waves-light" mdbWavesEffect title="Go to Home Page">Home
                         </a>
                     </li>
                     <li class="nav-item">
@@ -26,8 +23,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a routerLink="../about" class="nav-link waves-light" mdbWavesEffect title="Go to About">
-                            About Us
+                        <a class="nav-link waves-light" mdbWavesEffect
+                            style="text-decoration: underline; color: #dd69f1d8;" title="Go to About">
+                            About Us<span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -56,114 +54,52 @@
 
     <mdb-carousel [animation]="'slide'">
         <mdb-carousel-item>
-            <img class="d-block w-100" src="/assets/Slide/Box2.png" alt="First slide">
+            <img class="d-block w-100" src="/assets/Slide/Box4.png" alt="First slide">
         </mdb-carousel-item>
         <mdb-carousel-item>
-            <img class="d-block w-100" src="/assets/Slide/Box4.png" alt="Second slide">
+            <img class="d-block w-100" src="/assets/Slide/Box3.png" alt="Second slide">
         </mdb-carousel-item>
         <mdb-carousel-item>
-            <img class="d-block w-100" src="/assets/Slide/Box6.png" alt="Third slide">
+            <img class="d-block w-100" src="/assets/Slide/Box5.png" alt="Third slide">
         </mdb-carousel-item>
         <mdb-carousel-item>
-            <img class="d-block w-100" src="/assets/Slide/Box8.png" alt="Third slide">
+            <img class="d-block w-100" src="/assets/Slide/Box7.png" alt="Third slide">
         </mdb-carousel-item>
     </mdb-carousel>
     <!--SlideShow-->
 
     <!--Features-->
 
-    <!--Products-->
+    <!--About Us-->
     <div class="container">
         <br><br>
-        <h3 align="center">Products Featured Online</h3>
-        <p align="center" style="color: #dda5e7; font-family: cursive;">Products the are available in the shop</p>
+        <h3 align="center">About Us</h3>
+        <p align="center" style="color: #dda5e7; font-family: cursive;">Get to know us well.</p>
+        <p align="center" style="padding-bottom: 20px;">
+            Gift Box is an online shop which sells gift boxes online. It allows the customer to shop for
+            gift boxes online. It allows the customer to choose from the range of different gift boxes the service
+            provider have. Gift Box also allows the first time buyer to register so that they can get notification
+            about new range of gift boxes and great deals the service provider have.
+        </p>
 
-        <br><br>
-        <div class="row justify-content-center">
-            <div class="col-sm-4 pb-3" *ngFor="let item of items; index as userID">
-                <!-- Card -->
-                <div class="card">
-                    <!-- Card img -->
-                    <img [src]="item.image" alt="Card image cap" width="250" height="250" style="padding-top: 30px;">
-
-                    <br>
-                    <h4>{{item.title}}</h4>
-
-                    <p style="color: #dda5e7; font-family: cursive;">Category: {{item.category}} <br>
-                        Price: R{{item.price}}</p>
-                </div>
-                <!-- Card -->
-            </div>
-        </div>
-
-        <br>
-        <form action="" align="center">
-            <button class="shopBtn">SHOP NOW</button>
-        </form>
     </div>
-    <!--Products-->
+    <!--About Us-->
 
-    <!--Who Are We-->
+    <!--Objective-->
     <div class="whoAreWe">
         <div class="container">
-            <h3 align="center" style="padding-top: 20px;">Who Is Gift Box?</h3>
-            <p align="center" style="color: #dda5e7; font-family: cursive;">Get to know us well.</p>
+            <h3 align="center" style="padding-top: 20px;">Objective</h3>
+            <hr style="color: white; border: 1px solid rgb(66, 64, 64); width: 20%;">
 
             <p align="center" style="padding-bottom: 20px;">
-                Gift Box is an online shop which sells gift boxes online. It allows the customer to shop for
-                gift boxes online. It allows the customer to choose from the range of different gift boxes the service
-                provider have. Gift Box also allows the first time buyer to register so that they can get notification
-                about new range of gift boxes and great deals the service provider have. <a routerLink="../about"
-                    style="color: #d00af3;">Find out more. </a>
+                The objective of this system is to save time for customers and also help the customers do their shopping
+                at any time anywhere they are. It will also help the service provider to improve their services on their
+                marketing side and also track the patterns of shopping for their existing customers.
             </p>
         </div>
     </div>
-    <!--Who Are We-->
-
-    <!--Visit-->
-    <div class="container">
-        <br><br>
-        <h3 align="center">Come Get Your</h3>
-        <p align="center" style="color: #dda5e7; font-family: cursive;">Visit Our Shop Now</p>
-
-        <br><br>
-        <div class="row justify-content-center">
-            <div class="col-sm-4 pb-3" *ngFor="let a of add; index as userID">
-                <div class="card2">
-
-                    <div class="view overlay">
-                        <a href=""> <img [src]="a.image" class="img-fluid " alt="smaple image">
-                            <div class="mask flex-center rgba-purple-light">
-                                <p class="white-text" style="font-size: 28px;"><b> Shop </b></p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!-- Card -->
-
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-sm-4 pb-3" *ngFor="let a of add2; index as userID">
-                <div class="card2">
-
-                    <div class="view overlay">
-                        <a href=""> <img [src]="a.image" class="img-fluid " alt="smaple image">
-                            <div class="mask flex-center rgba-purple-slight">
-                                <p class="white-text" style="font-size: 28px;"><b> Shop </b></p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!-- Card -->
-
-            </div>
-        </div>
-    </div>
-    <!--Visit-->
+    <!--Objective-->
     <!--Features-->
-
     <footer>
 
         <h3 align="center">For More Infomation:</h3>
@@ -199,16 +135,16 @@
                     Soshanguve Block L
                 </div>
                 <div class="col" style="margin-top: 10px;">
-
+    
                 </div>
                 <div class="col" style="margin-top: 10px;">
-
+    
                 </div>
             </div>
 
             <br>
             <h5 style="font-size: 20px;">Follow Us</h5>
-
+              
             <ul>
                 <li><a href=""><i class="fab fa-facebook-square"></i></a></li>
                 <li><a href=""><i class="fab fa-twitter-square"></i></a></li>
