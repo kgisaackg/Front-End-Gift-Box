@@ -10,7 +10,11 @@ import { GiftBoxFormComponent } from './components/gift-box-form/gift-box-form.c
 import { StatisticBoxComponent } from './components/statistic-box/statistic-box.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ShoplandingComponent } from './components/shoplanding/shoplanding.component';
-
+import { ViewBoxComponent } from './components/view-box/view-box.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -19,12 +23,20 @@ import { ShoplandingComponent } from './components/shoplanding/shoplanding.compo
     GiftBoxFormComponent,
     StatisticBoxComponent,
     AboutusComponent,
-    ShoplandingComponent
+    ShoplandingComponent,
+    ViewBoxComponent,
+    AdminDashboardComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot()
+  ], 
+  schemas: [
+    NO_ERRORS_SCHEMA,
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [],
   bootstrap: [AppComponent]
