@@ -3,24 +3,27 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MaterialModule } from './material/material.module';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { LandingComponent } from './components/landing/landing.component';
 import { GiftBoxFormComponent } from './components/gift-box-form/gift-box-form.component';
 import { StatisticBoxComponent } from './components/statistic-box/statistic-box.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { ShoplandingComponent } from './components/shoplanding/shoplanding.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    LandingComponent,
     GiftBoxFormComponent,
-    StatisticBoxComponent
+    StatisticBoxComponent,
+    AboutusComponent,
+    ShoplandingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [],
