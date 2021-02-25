@@ -9,7 +9,8 @@
 
 ::ng-deep .navbar {
     background-color: #f5ecf7ea;
-      padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
       box-shadow: 1px 1px 10px 10px rgba(145, 144, 144, 0.329);
   }
   
@@ -63,7 +64,7 @@
   }
   
   .card{
-      background-color: #f5ecf7ea;
+      background-color: #fff;
       width: 350px;
       height: 400px;
       align-items: center;
@@ -141,7 +142,7 @@
     padding: 10px;
     box-shadow: 0px 0px 8px 5px rgba(145, 144, 144, 0.329);
     font-family: cursive;
-    margin-top: 80px;
+    margin-top: 76px;
   }
   
   #myBtn {
@@ -166,3 +167,22 @@
     background-color: rgb(112, 3, 54); /* Add a dark-grey background on hover */
   } 
 
+.aboutImg{
+  box-shadow: 0px 0px 8px 5px rgba(145, 144, 144, 0.329);
+}
+
+.video{
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+
+.view {
+  background-image: url("/assets/Slide/Box2.png");
+  background-size: cover;
+  height: 100vh;
+}

@@ -20,19 +20,19 @@ export class AboutusComponent implements OnInit {
   }
   // When the user scrolls down 20px from the top of the document, show the button
   scrollFunction() {
-    /*if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      document.getElementById("myBtn").style.display = "block";
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("myBtn")!.style.display = "block";
     } else {
-      document.getElementById("myBtn").style.display = "none";
-    }*/
+      document.getElementById("myBtn")!.style.display = "none";
+    }
   }
 
   // When the user clicks on the button, scroll to the top of the document
   topFunction() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    document.getElementById('top')?.scrollIntoView({behavior: 'smooth'})
+    // document.body.scrollTop = 0; // For Safari
+    // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
-
   bottomFunction() {
     document.body.scrollTop = 10000; // For Safari
     document.documentElement.scrollTop = 10000; // For Chrome, Firefox, IE and Opera
@@ -42,5 +42,30 @@ export class AboutusComponent implements OnInit {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
+
+
+
+ 
+myVideo:any = document.getElementById("video1"); 
+
+playPause() { 
+  if (this.myVideo.paused) 
+  this.myVideo.play(); 
+  else 
+  this.myVideo.pause(); 
+} 
+
+makeBig() { 
+  this.myVideo.width = 560; 
+} 
+
+ makeSmall() { 
+  this.myVideo.width = 320; 
+} 
+
+makeNormal() { 
+  this.myVideo.width = 420; 
+} 
+
 
 }
