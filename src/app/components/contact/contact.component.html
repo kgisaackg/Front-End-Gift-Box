@@ -3,42 +3,42 @@
 
     <!--Navbar-->
     <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-light" [containerInside]="false">
-        
-            <!-- Navbar brand -->
-            <mdb-navbar-brand><a class="navbar-brand" href="#"><img src="/assets/logo.png" alt="" width="100"
-                height="50"></a></mdb-navbar-brand>
 
-            <!-- Collapsible content -->
-            <links>
+        <!-- Navbar brand -->
+        <mdb-navbar-brand><a class="navbar-brand" href="#"><img src="/assets/logo.png" alt="" width="100"
+                    height="50"></a></mdb-navbar-brand>
 
-                <!-- Links -->
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a routerLink="" class="nav-link waves-light" mdbWavesEffect title="Go to Home Page">Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a routerLink="../shop" class="nav-link waves-light" mdbWavesEffect title="Shop Now">
-                            Shop
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a routerLink="../about" class="nav-link waves-light" mdbWavesEffect title="Go to About">
-                            About Us<span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a routerLink="../contact" class="nav-link waves-light" mdbWavesEffect
-                            style="text-decoration: underline; color: #dd69f1d8;" title="Go to Contact Info">
-                            Contact<span class="sr-only">(current)</span>
-                        </a>
-                    </li>
+        <!-- Collapsible content -->
+        <links>
 
-                </ul>
-                <!-- Links -->
-            </links>
-            <!-- Collapsible content -->
-       
+            <!-- Links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a routerLink="" class="nav-link waves-light" mdbWavesEffect title="Go to Home Page">Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="../shop" class="nav-link waves-light" mdbWavesEffect title="Shop Now">
+                        Shop
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="../about" class="nav-link waves-light" mdbWavesEffect title="Go to About">
+                        About Us<span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="../contact" class="nav-link waves-light" mdbWavesEffect
+                        style="text-decoration: underline; color: #dd69f1d8;" title="Go to Contact Info">
+                        Contact<span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- Links -->
+        </links>
+        <!-- Collapsible content -->
+
     </mdb-navbar>
     <!--/.Navbar-->
 
@@ -56,7 +56,7 @@
                 <div class="mask rgba-black-strong flex-center">
                     <div class="container">
                         <div class="white-text text-center wow fadeInUp">
-                            <h2>Contact Us</h2>
+                            <h2 class="mainTitle">Contact Us</h2>
                             <h5>How To Find Us?</h5>
 
                         </div>
@@ -93,7 +93,7 @@
                     TUT Soshanguve
                 </div>
                 <div class="col" style="margin-top: 10px;">
-                    Phone: +
+                    Phone: +011 000 0992
                 </div>
                 <div class="col" style="margin-top: 10px;">
                     Email: www.giftbox.ac.za
@@ -114,71 +114,16 @@
             <br>
             <h5 style="font-size: 20px;">Follow Us</h5>
 
+
             <ul>
-                <li><a href=""><i class="fab fa-facebook-square"></i></a></li>
-                <li><a href=""><i class="fab fa-twitter-square"></i></a></li>
-                <li><a href=""><i class="fab fa-instagram-square"></i></a></li>
+                <li><a href="https://web.facebook.com/?_rdc=1&_rdr"><i class="fab fa-facebook-square"></i></a></li>
+                <li><a href="https://twitter.com/?lang=en"><i class="fab fa-twitter-square"></i></a></li>
+                <li><a href="https://www.instagram.com/"><i class="fab fa-instagram-square"></i></a></li>
             </ul>
         </div>
     </div>
     <!--Contact Us-->
 
-    <!--Email-->
-    <div class="whoAreWe">
-        <div class="container">
-            <h3 align="center">Get In Touch With Us</h3>
-            <p align="center" style="color: #dda5e7; font-family: cursive;">By Sending Us an Email.</p>
-            <br>
-            <form [formGroup]="formContact" (ngSubmit)="onSubmit()">
-
-                <input type="text" formControlName="fname" placeholder="First Name">
-                <div *ngIf="fname?.invalid && fname?.touched">
-                    <small class="text-danger" *ngIf="fname?.errors?.required"> First Name is
-                        Required</small>
-                    <small class="text-danger" *ngIf="fname?.errors?.minlength">First Name must have more then 3
-                        letters</small>
-                </div>
-
-                <input type="text" formControlName="lname" placeholder="Last Name">
-                <div *ngIf="lname?.invalid && lname?.touched">
-                    <small class="text-danger" *ngIf="fname?.errors?.required">Last Name is
-                        Required</small>
-                    <small class="text-danger" *ngIf="fname?.errors?.minlength">Last Name must have more then 3
-                        letters</small>
-                </div>
-
-                <input type="text" formControlName="email" placeholder="Email">
-                <div *ngIf="email?.invalid && email?.touched">
-                    <small class="text-danger" *ngIf="email?.errors?.required">Email Address is
-                        Required</small>
-                    <small class="text-danger" *ngIf="email?.errors?.minlength">Email Address must have more then 3
-                        letters</small>
-                </div>
-
-                <input type="text" formControlName="subject" placeholder="Subject">
-                <div *ngIf="subject?.invalid && subject?.touched">
-                    <small class="text-danger" *ngIf="subject?.errors?.required">The Subject is
-                        Required</small>
-                    <small class="text-danger" *ngIf="subject?.errors?.minlength">The Subject must have more then 3
-                        letters</small>
-                </div>
-
-
-                <textarea formControlName="message" placeholder="Write something.." style="height:200px"></textarea>
-                <div *ngIf="message?.invalid && message?.touched">
-                    <small class="text-danger" *ngIf="message?.errors?.required">Shouldn't be left empty</small>
-                </div>
-
-
-                <button type="submit" align="center" class="shopBtn">Send
-                </button>
-
-            </form>
-        </div>
-    </div>
-
-
-    <!--Email-->
     <br>
     <br>
 

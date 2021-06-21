@@ -1,135 +1,160 @@
-  <!--Navbar-->
-  <mdb-navbar class="mb-5" SideClass="navbar  fixed-top navbar-expand-lg" [containerInside]="false">
-    <div class="container">
-  
-     <!-- Navbar brand -->
-     <mdb-navbar-brand><a class="navbar-brand" href="#"><img src="/assets/logo.png" alt="" width="20%"
-        height="15%"></a></mdb-navbar-brand>
-   
-     <!-- Collapsible content -->
-     <links>
-   
-       <ul class="navbar-nav ml-auto nav-flex-icons">
-         <li class="nav-item">
-           <a class="nav-link">
-             <div class="btn-group" mdbDropdown>
-               <mdb-icon far icon="user" class="purple-text" mdbDropdownToggle></mdb-icon>
-               <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-                 <a class="dropdown-item" href="#">Profile</a>
-                 <a class="dropdown-item" href="#">Home</a>
-                 <a class="dropdown-item" href="#">Shop</a>
-                 <div class="divider dropdown-divider"></div>
-                 <a class="dropdown-item" href="#">Log-out</a>
-               </div>
-             </div>
-           </a>
-         </li>
-       </ul>
-     </links>
-     <!-- Collapsible content -->
-    </div>
-   </mdb-navbar>
-   <!--/.Navbar-->
+<!--Navbar-->
+<mdb-navbar class="mb-5" SideClass="navbar  fixed-top navbar-expand-lg" [containerInside]="false">
+  <div class="container">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand"><img routerLink="../shop" src="/assets/logo.png" alt="" width="20%"
+          height="15%"></a>
+    </mdb-navbar-brand>
+
+    <!-- Collapsible content -->
+    <links>
+
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link">
+            <div class="btn-group" mdbDropdown>
+              <div mdbDropdownToggle>
+                {{customer?.firstname}}<i class="fas fa-chevron-down icon"></i>
+              </div>
+
+              <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+                <a routerLink="../profile" class="dropdown-item">Profile</a>
+                <a routerLink="../wish" class="dropdown-item">Wish List</a>
+                <a routerLink="../order" class="dropdown-item">View Order</a>
+                <a routerLink="../shop" class="dropdown-item">Shop</a>
+                <div class="divider dropdown-divider"></div>
+                <button class="dropdown-item btn-logOut" (click)="logOut()">Log-out</button>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </links>
+    <!-- Collapsible content -->
+
+  </div>
+</mdb-navbar>
+<!--/.Navbar-->
 
 <div class="container mt-5">
   <!-- Horizontal Steppers -->
   <div class="row">
     <div class="col-md-12">
-  
+
       <!-- Stepers Wrapper -->
       <ul class="stepper stepper-horizontal">
-  
+
         <!-- First Step -->
         <li>
           <a [routerLink]="" (click)="stepOne()" class="px-0">
-            <span class="circle bg-success">1</span><br/>
+            <span class="circle bg-success">1</span><br />
             <span class="label">Order</span>
           </a>
         </li>
-  
+
         <!-- Second Step -->
         <li>
           <a [routerLink]="" (click)="stepTwo()" class="px-0">
-            <span class="circle" id="cirle2">2</span><br/>
+            <span class="circle" id="cirle2">2</span><br />
             <span class="label">Delivery</span>
           </a>
         </li>
-  
+
         <!-- Third Step -->
         <li>
           <a [routerLink]="" (click)="stepThree()" class="px-0">
-            <span class="circle" id="cirle3">3</span><br/>
+            <span class="circle" id="cirle3">3</span><br />
             <span class="label">Payment</span>
           </a>
         </li>
-  
+
       </ul>
       <!-- /.Stepers Wrapper -->
-  
+
     </div>
   </div>
   <!-- /.Horizontal Steppers -->
- <!-- Items -->
- <h3>Selected Items</h3>
- <br><br>
- <table align="center">
-  <thead>
 
-    <th>Item</th>
-    <th>Description</th>
-    <th>Quantity</th>
-    <th>Remove Item</th>
+  <!-- Items -->
+  <div class="items" *ngIf="step1">
 
+    <h3>Selected Items</h3>
+    <br><br>
+    <table align="center">
+      <thead>
+        <th>Item</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Remove Item</th>
+      </thead>
 
-  </thead>
-  <tbody *ngFor="let item of items; index as userno">
-    <tr>
+      <tbody *ngFor="let item of gitfBoxes; index as userno">
+        <tr>
+          <td>
+            <img [src]="item.image" alt="Card image cap" width="250" height="250" style="padding-top: 30px;"
+              align="center">
+            <br><br>
+            <h4>{{item.title}}</h4>
 
-      <td>
-        <img [src]="item.image" alt="Card image cap" width="250" height="250" style="padding-top: 30px;"
-          align="center">
-        <br><br>
-        <h4>{{item.title}}</h4>
+            <p style="color: #dda5e7; font-family: cursive;">
 
-        <p style="color: #dda5e7; font-family: cursive;">
-
-          Category: {{item.category}}
-          <br>
-          Price: R{{item.price}}
-        </p>
-
-      </td>
-      <td align="center">{{item.desc}}</td>
-      <td align="center">
-        <form action="/action_page.php">
-          <label for="quantity">Quantity (between 1 and {{item.availItems}}):</label>
-          <input type="number" id="quantity" name="quantity" min="1" [max]="item.availItems" placeholder="1">
-        </form>
-      </td>
+              Category: {{item.category}}
+              <br>
+              Price: R{{item.item_price}}.00
+              <br>
+              Size: {{item.size}}
+            </p>
 
 
-      <td align="center"><button type="button" class="click" (click)="onDelete(userno, item.price, item.title)"><i
-            class="fa fa-ban" aria-hidden="true"></i> Delete
-        </button>
-        <!--(click)="plus(item)"-->
-      </td>
+          </td>
+          <td align="center">{{item.item_description}}</td>
+          <td align="center">
+            <form action="/action_page.php">
 
-    </tr>
-  </tbody>
-</table>
-<br><br>
+              <button class="addQ" (click)="addQ(item)" title="Add">+</button> {{item.numItems}} <button class="subQ"
+                (click)="subQ(item)" *ngIf="item.numItems>1" title="Subtract">-</button>
+            </form>
+          </td>
 
- <h3>Total Price: R{{price}}</h3>
+          <td align="center">
+            <button type="button" class="click"
+              (click)="onDelete(item.cart_id, item.price, item.title, item.numItems)"><i class="fa fa-ban"
+                aria-hidden="true"></i> Delete
+            </button>
+          </td>
+        </tr>
 
- <br><br>
+      </tbody>
 
- <!-- /.Items -->
+    </table>
 
+    <br><br>
+    <button type="button" class="clicked" (click)="cancelOrder()">
+      <i class="fa fa-ban" aria-hidden="true"></i> Cancel Order
+    </button>
+
+
+    <h3>Total Price: R{{price}}.00</h3>
+
+    <br><br>
+    <div style="display: flex; justify-content: center">
+      <button (click)="stepTwo()" class="next">Next</button>
+    </div>
+  </div>
+  <!-- /.Items -->
+
+
+  <p class="text-center" *ngIf="step2 || step3">Total price for your order: R{{price}}
+    <br>
+    {{message}}
+  </p>
   <!--Shipping form-->
-  <form [formGroup]="shippingForm" (ngSubmit)="onSubmit()" class="shipping-form"  *ngIf="step2">
+  <div *ngIf="step2">
+    <form [formGroup]="shippingForm" (ngSubmit)="onShippingFormSubmit()" class="shipping-form">
 
-    <p class="h4">Shipping Information</p>
-  
+      <p class="h4">Shipping Information</p>
+
       <p>Free Delivery 3-5 working days</p>
 
 
@@ -138,7 +163,7 @@
         <label for="name">Name</label>
         <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="text-danger">
           <small *ngIf="name?.errors?.required"> *Name is required</small>
-          <small  *ngIf="name?.errors?.minlength"> *Name suppose to be more than 3 letter</small>
+          <small *ngIf="name?.errors?.minlength"> *Name suppose to be more than 3 letter</small>
         </div>
       </div>
 
@@ -155,7 +180,7 @@
         <label for="streetaddress">Street address</label>
         <div *ngIf="streetAddress?.invalid && (streetAddress?.dirty || streetAddress?.touched)" class="text-danger">
           <small *ngIf="streetAddress?.errors?.required"> *Street Address is required</small>
-          <small  *ngIf="streetAddress?.errors?.minlength"> *Address is too short</small>
+          <small *ngIf="streetAddress?.errors?.minlength"> *Address is too short</small>
         </div>
       </div>
 
@@ -164,7 +189,7 @@
         <label for="province">Province</label>
         <div *ngIf="province?.invalid && (province?.dirty || province?.touched)" class="text-danger">
           <small *ngIf="province?.errors?.required"> *Province is required</small>
-          <small  *ngIf="province?.errors?.minlength"> *Province suppose to be more than 3 letter</small>
+          <small *ngIf="province?.errors?.minlength"> *Province suppose to be more than 3 letter</small>
         </div>
       </div>
 
@@ -184,61 +209,96 @@
         </div>
       </div>
 
-      <button type="submit" mdbBtn class="customBtn" color="purple">Submit</button>
+      <button type="submit" mdbBtn class="customBtn" [disabled]='!shippingForm.valid' color="purple">Submit</button>
+
 
     </form>
+    <div style="display: flex; justify-content: center">
+      <button (click)="stepOne()" class="next">Previous</button>
+    </div>
+  </div>
   <!--End of Shipping-form-->
 
   <!--Payment form-->
-  <form [formGroup]="billingForm" (ngSubmit)="onFormSubmit()" class="payment-form"  *ngIf="step3">
+  <div *ngIf="step3">
+  <form [formGroup]="billingForm" (ngSubmit)="onBillingFormSubmit()" class="payment-form">
     <p class="h4">Billing Details</p>
-      <div class="md-form mt-0">
-        <input type="text" id="cardno" class="form-control" mdbInput formControlName="cardNumber">
-        <label for="cardno">Card number</label>
-        <div *ngIf="cardNumber?.invalid && (cardNumber?.dirty || cardNumber?.touched)" class="text-danger">
-          <small *ngIf="cardNumber?.errors?.required"> *Card number is required</small>
-        </div>
+    <div class="md-form mt-0">
+      <input type="text" id="cardno" class="form-control" mdbInput formControlName="cardNumber">
+      <label for="cardno">Card number</label>
+      <div *ngIf="cardNumber?.invalid && (cardNumber?.dirty || cardNumber?.touched)" class="text-danger">
+        <small *ngIf="cardNumber?.errors?.required"> *Card number is required</small>
       </div>
+    </div>
 
-      <div class="md-form mt-0">
-        <input placeholder="MM/YY" type="text" id="expiry" class="form-control short-input" mdbInput formControlName="expiryDate">
-        <label for="expiry">Expiry date</label>
-        <div *ngIf="expiryDate?.invalid && (expiryDate?.dirty || expiryDate?.touched)" class="text-danger">
-          <small *ngIf="expiryDate?.errors?.required"> *Expiry date is required</small>
-        </div>
+    <div class="md-form mt-0">
+      <input placeholder="MM/YY" type="text" id="expiry" class="form-control short-input" mdbInput
+        formControlName="expiryDate">
+      <label for="expiry">Expiry date</label>
+      <div *ngIf="expiryDate?.invalid && (expiryDate?.dirty || expiryDate?.touched)" class="text-danger">
+        <small *ngIf="expiryDate?.errors?.required"> *Expiry date is required</small>
       </div>
+    </div>
 
-      <div class="md-form mt-0">
-        <input type="text" id="cvv" class="form-control short-input" mdbInput formControlName="cvv">
-        <label for="cvv">CVV</label>
-        <div *ngIf="cvv?.invalid && (cvv?.dirty || cvv?.touched)" class="text-danger">
-          <small *ngIf="cvv?.errors?.required"> *CVV is required</small>
-        </div>
+    <div class="md-form mt-0">
+      <input type="text" id="cvv" class="form-control short-input" mdbInput formControlName="cvv">
+      <label for="cvv">CVV</label>
+      <div *ngIf="cvv?.invalid && (cvv?.dirty || cvv?.touched)" class="text-danger">
+        <small *ngIf="cvv?.errors?.required"> *CVV is required</small>
       </div>
+    </div>
 
-      <div class="md-form mt-0">
-        <input type="text" id="zip" class="form-control" mdbInput formControlName="zip">
-        <label for="zip">ZIP/Postal code</label>
-        <div *ngIf="zip?.invalid && (zip?.dirty || zip?.touched)" class="text-danger">
-          <small *ngIf="zip?.errors?.required"> *Zip is required</small>
-          <small  *ngIf="zip?.errors?.minlength"> *Zip suppose to have more than 3 letter</small>
-        </div>
+    <div class="md-form mt-0">
+      <input type="text" id="zip" class="form-control" mdbInput formControlName="zip">
+      <label for="zip">ZIP/Postal code</label>
+      <div *ngIf="zip?.invalid && (zip?.dirty || zip?.touched)" class="text-danger">
+        <small *ngIf="zip?.errors?.required"> *Zip is required</small>
+        <small *ngIf="zip?.errors?.minlength"> *Zip suppose to have more than 3 letter</small>
       </div>
+    </div>
 
 
-      <div class="md-form mt-0">
-        <input type="text" id="cardname" class="form-control" mdbInput formControlName="cardName">
-        <label for="cardname">Card on Name</label>
-        <div *ngIf="cardName?.invalid && (cardName?.dirty || cardName?.touched)" class="text-danger">
-          <small *ngIf="cardName?.errors?.required"> *Card name is required</small>
-        </div>
+    <div class="md-form mt-0">
+      <input type="text" id="cardname" class="form-control" mdbInput formControlName="cardName">
+      <label for="cardname">Name on Card</label>
+      <div *ngIf="cardName?.invalid && (cardName?.dirty || cardName?.touched)" class="text-danger">
+        <small *ngIf="cardName?.errors?.required"> *Card name is required</small>
       </div>
+    </div>
 
-      <button type="submit" mdbBtn class="customBtn" color="purple">Confirm Payment</button>
-    </form>
+    <button type="submit" mdbBtn class="customBtn" [disabled]='!billingForm.valid' color="purple"
+      (click)="frame.show()">Confirm Payment</button>
+  </form>
+  <div style="display: flex; justify-content: center">
+    <button (click)="stepTwo()" class="next">Previous</button>
+  </div>
+  </div>
   <!--End of Payment form-->
 
+  <!--After Submission-->
+
+  <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold"> Message</h4>
+
+        </div>
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <p align="center" style="top: 50%; margin-top: 50px;">Order Has Been Made</p>
+
+          </div>
+
+          <button type="button" class="okBtn" (click)="frame.hide()" (click)="ok()">OK</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--After Submission-->
+
+
 </div>
-
-
-

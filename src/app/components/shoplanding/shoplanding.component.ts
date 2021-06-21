@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/services/admin.service';
 
-//import { CustomerService } from 'src/app/services/customer.service';
+import { CustomerService } from 'src/app/services/customer.service';
 
 
 @Component({
@@ -11,54 +12,106 @@ import { Router } from '@angular/router';
   styleUrls: ['./shoplanding.component.scss']
 })
 export class ShoplandingComponent implements OnInit {
+  add: any = [];
+  wishL: any = [];
+  wishListError = '';
+  cartError: any = '';
 
 
-  items: Array<{ image: string, title: string, category: string, price: number, numItems: number, wish: number, availItems: number, desc:string }> = [
-    { image: "assets/GiftBoxes/box1.png", title: "Cloth Work", category: "Birthday", price: 150, numItems: 0, wish:0, availItems: 5, desc: "Medium Size Box." },
-    { image: "assets/GiftBoxes/box2.png", title: "Super Green", category: "Graduation", price: 120, numItems: 0, wish:0, availItems: 10, desc: "Medium/Large Size Box, comes in camo green." },//can also be for birthday
-    { image: "assets/GiftBoxes/box3.png", title: "Lightin' Pink", category: "Birthday", price: 100, numItems: 0, wish:0, availItems: 5, desc: "Medium Size Box, with a pink color and light pink stripes." },//can also be for birthday and valentin
-    { image: "assets/GiftBoxes/box4.png", title: "Silver Scotch", category: "Christmas", price: 150, numItems: 0, wish:0, availItems: 20, desc: "Medium Size Box, with silver scotch pattern." },
-    { image: "assets/GiftBoxes/box5.png", title: "Brownie", category: "Christmas", price: 80, numItems: 0, wish:0, availItems: 10, desc: "Small Size Box, covered with brown color." },
-    { image: "assets/GiftBoxes/box6.png", title: "Green Bow", category: "Christmas", price: 100, numItems: 0, wish:0, availItems: 10, desc: "Medium Size Box, simple box." },
-    { image: "assets/GiftBoxes/box7.png", title: "Red Rosey", category: "Valentine", price: 50, numItems: 0, wish:0, availItems: 20, desc: "XS Size Boxes, they come as a set." },//can also be for christmas
-    { image: "assets/GiftBoxes/box8.png", title: "Merry Merry", category: "Christmas", price: 50, numItems: 0, wish:0, availItems: 11, desc: "XS Size Box, only comes in white and with a green and white string." },
-    { image: "assets/GiftBoxes/box9.png", title: "Boxey White", category: "Christmas", price: 70, numItems: 0, wish:0, availItems: 12, desc: "Small Size Box, with some christmas gold glitter." },
-    { image: "assets/GiftBoxes/box10.png", title: "Star", category: "Birthday", price: 80, numItems: 0, wish:0, availItems: 10, desc: "Small Size Box." },
-    { image: "assets/GiftBoxes/box11.png", title: "Purple House", category: "Wedding", price: 50, numItems: 0, wish:0, availItems: 1, desc: "XS Size Box, built to look like a house." },//can aslo be used for birthday
-    { image: "assets/GiftBoxes/box12.png", title: "Pinkie", category: "Wedding", price: 120, numItems: 0, wish:0, availItems: 20, desc: "Small Size Box, pink and white stripe box." },//can aslo be used for valentine/birthday/
-    { image: "assets/GiftBoxes/box13.png", title: "Proud Merry", category: "Christmas", price: 150, numItems: 0, wish:0, availItems: 0, desc: "Large Size Box, comes wrapped in a brown cover with a red string." },
-    { image: "assets/GiftBoxes/box14.png", title: "Yellow Bow", category: "Birthday", price: 150, numItems: 0, wish:0, availItems: 0, desc: "Medium Size Box, Comes with a one of a kind yellow bow." },//can aslo be used for christmas
-    { image: "assets/GiftBoxes/box15.png", title: "Summer Loving", category: "Valentine", price: 130, numItems: 0, wish:0, availItems: 10, desc: "Medium Size Box, Comes in a heart shaped box." },//can aslo be used for birthday/wedding
-    { image: "assets/GiftBoxes/box16.png", title: "Brown Merry", category: "Christmas", price: 200, numItems: 0, wish:0, availItems: 8, desc: "Large Size Box, brown box with a red bow." },//can aslo be used for valentine
-    { image: "assets/GiftBoxes/box17.png", title: "Bronie and Red", category: "Wedding", price: 80, numItems: 0, wish:0, availItems: 30, desc: "Small Size Box." },//can aslo be used for valentine/ christmas
-    { image: "assets/GiftBoxes/box18.png", title: "Pink Happiness", category: "Baby Shower", price: 100, numItems: 0, wish:0, availItems: 20, desc: "Small Size Box, Comes an octagon shape." },//can aslo be used for valentine/birthday
-    { image: "assets/GiftBoxes/box19.png", title: "Red", category: "Christmas", price: 50, numItems: 0, wish:0, availItems: 30, desc: "XS Size Box, comes in red color." },//can aslo be used for valentine/ christmas
-    { image: "assets/GiftBoxes/box20.png", title: "Blue, Purple & Pink", category: "Baby Shower", numItems: 0, wish:0, price: 100, availItems: 15, desc: "XS Size Boxes, they come as a set." },
-    { image: "assets/GiftBoxes/box21.png", title: "Red Cross & Bow", category: "Valentine", price: 80, numItems: 0, wish:0, availItems: 11, desc: "XS Size Box, comes in brown and a red bow." },//can aslo be used for Birthday/ christmas
-    { image: "assets/GiftBoxes/box22.png", title: "The Reddies", category: "Christmas", price: 100, numItems: 0, wish:0, availItems: 10, desc: "XXS Size Box, comes in a set." },//can aslo be used for valentine/ birthday
-    { image: "assets/GiftBoxes/box23.png", title: "Blue Monday", category: "Graduation", price: 120, numItems: 0, wish:0, availItems: 9, desc: "XS Size Box." },//can aslo be used for birthday
-    { image: "assets/GiftBoxes/box24.png", title: "Blackie", category: "Graduation", price: 80, numItems: 0, wish:0, availItems: 8, desc: "XS Size Box." },//can aslo be used for valentine/ birthday
-    { image: "assets/GiftBoxes/box25.png", title: "Divine", category: "Christmas", price: 80, numItems: 0, wish:0, availItems: 8, desc: "Medium Size Box, has some pattern and comes in red." },//can aslo be used for valentine
+  constructor(private router: Router, private cs: CustomerService, private as: AdminService) { }
 
-  ]
+  gifts: any = [];
 
-  add: Array<{ image: string, title: string, category: string, price: number, numItems: number, wish: number, availItems: number, desc:string }> = [];
-  wishL: Array<{ image: string, title: string, category: string, price: number, numItems: number,wish: number, availItems: number, desc:string }> = [];
+  gitfBoxes: any = [];
+  image: string = '';
+  numItems: number = 0;
+  wishI: number = 0;
+  selectI: number = 0;
 
+  custId: any;
 
-  constructor(private router: Router, /*private cs: CustomerService*/) { }
+  custName = '';
+  cart: any = [];
+  cartItems: any = [];
 
-  /*item: any = [];
-
-  boxes: any = [];*/
+  wishItems: any = [];
+  public innerWidth: any;
 
   ngOnInit(): void {
-    /*this.cs.getAllItems().subscribe(item => {
-      this.item = item;
-      console.log(this.item);
+
+    this.innerWidth = window.innerWidth;
+
+    console.log(this.innerWidth);
+    const custIdJson = localStorage.getItem('id');
+    this.custId = custIdJson !== null ? JSON.parse(custIdJson) : null;
+
+    const cust_id = { cust_id: this.custId };
+    console.log(cust_id);
+    this.cs.getCustomer(this.custId).subscribe((data: any) => {
+      this.custName = data[0]?.firstname;
+      console.log(data[0]);
+    }, error => console.log(error));
+
+
+    console.log(this.custName);
+
+    //Get All The Items
+    this.as.viewItems().subscribe(data => {
+      console.log(data);
+
+      this.gifts = data;
+
+      for (let c of this.gifts) {
+
+        const gB = {
+          item_id: c.item_id, category: c.category, image: c.image, item_descri: c.item_descri, item_price: c.item_price,
+          size: c.size, title: c.title, numItems: this.numItems, wishI: this.wishI, selectI: this.selectI,
+          availItems: c.avail_item
+        }
+
+        this.gitfBoxes.push(gB);
+        console.log(gB);
+      }
+
+
     });
 
-    this.boxes.push(this.item);*/
+    console.log(this.gitfBoxes);
+
+    //Get Items from cart
+    this.cs.viewCart(this.custId).subscribe((data: any) => {
+      this.cart = data.data;
+      console.log(data.data);
+
+      if (this.cart == '') {
+        this.itm = "0";
+
+      }
+      for (let c of this.cart) {
+        this.cartItems.push(c);
+        this.i += 1;
+        this.itm = this.i.toString();
+      }
+
+    }, error => console.log(error));
+    console.log(this.cartItems);
+
+    //Get items inside wishlist
+    this.cs.viewWishList(this.custId).subscribe((data: any) => {
+      console.log(data);
+
+      this.wishItems = data;
+      console.log(this.wishItems);
+
+      if (this.wishItems == '') {
+        this.wish = "0";
+
+      }
+      for (let i of this.wishItems) {
+        this.w += 1;
+        this.wish = this.w.toString();
+      }
+    });
 
   }
 
@@ -77,29 +130,11 @@ export class ShoplandingComponent implements OnInit {
 
   // When the user clicks on the button, scroll to the top of the document
   topFunction() {
-    document.getElementById('top')?.scrollIntoView({behavior: 'smooth'})
-    // document.body.scrollTop = 0; // For Safari
-    // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  }
+    document.getElementById('top')?.scrollIntoView({ behavior: 'smooth' })
 
-  bottomFunction() {
-    document.body.scrollTop = 10000; // For Safari
-    document.documentElement.scrollTop = 10000; // For Chrome, Firefox, IE and Opera
-  }
-
-  homeFunction() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
 
   // items in the card
-
-  bday: Array<{ image: string, title: string, category: string, price: number, numItems: number, availItems: number, desc:string }> = [];
-  wed: Array<{ image: string, title: string, category: string, price: number, numItems: number, availItems: number, desc:string }> = [];
-  bShower: Array<{ image: string, title: string, category: string, price: number, numItems: number, availItems: number, desc:string }> = [];
-  cMas: Array<{ image: string, title: string, category: string, price: number, numItems: number, availItems: number, desc:string }> = [];
-  valen: Array<{ image: string, title: string, category: string, price: number, numItems: number, availItems: number, desc:string }> = [];
-  grad: Array<{ image: string, title: string, category: string, price: number, numItems: number, availItems: number, desc:string }> = [];
   num: number = 0;
   times: number = 1;
 
@@ -108,150 +143,202 @@ export class ShoplandingComponent implements OnInit {
 
   w: number = 0;
   wish: string = "";
+  boxes: any = [];
+  title: string = '';
   //categories
   birthday() {
-  
     if (this.times == 2) {
       this.times = 1;
-
-      this.bday = [];
+      this.boxes = [];
     }
-    for (let item of this.items) {
-      if (item.category == "Birthday" && this.times == 1)
-        this.bday.push(item);
-
+    for (let item of this.gitfBoxes) {
+      if (item.category == "Birthday" || item.category == "birthday" && this.times == 1)
+        this.boxes.push(item);
     }
+    this.title = "Birthday";
     this.times = 2;
     this.num = 1;
-    console.log(this.bday);
+    console.log(this.boxes);
   }
 
   wedding() {
-
-
     if (this.times == 2) {
       this.times = 1;
-
-      this.wed = [];
-
+      this.boxes = [];
     }
-    for (let item of this.items) {
+    for (let item of this.gitfBoxes) {
       if (item.category == "Wedding" && this.times == 1)
-        this.wed.push(item);
+        this.boxes.push(item);
     }
+
+    this.title = "Wedding";
     this.times = 2;
-    this.num = 2;
-    console.log(this.wed);
+    this.num = 1;
+    console.log(this.boxes);
   }
 
   babyShower() {
+
     if (this.times == 2) {
       this.times = 1;
-      this.bShower = [];
-
+      this.boxes = [];
     }
-    for (let item of this.items) {
+    for (let item of this.gitfBoxes) {
       if (item.category == "Baby Shower" && this.times == 1)
-        this.bShower.push(item);
+        this.boxes.push(item);
     }
+    this.title = "Baby Shower";
     this.times = 2;
-    this.num = 3;
-    console.log(this.bShower);
+    this.num = 1;
+    console.log(this.boxes);
   }
 
   christmas() {
     if (this.times == 2) {
       this.times = 1;
-      this.cMas = [];
-
+      this.boxes = [];
     }
-    for (let item of this.items) {
+    for (let item of this.gitfBoxes) {
       if (item.category == "Christmas" && this.times == 1)
-        this.cMas.push(item);
+        this.boxes.push(item);
     }
+    this.title = "Christmas";
     this.times = 2;
-    this.num = 4;
-    console.log(this.cMas);
+    this.num = 1;
+    console.log(this.boxes);
   }
 
   valentine() {
     if (this.times == 2) {
       this.times = 1;
-      this.valen = [];
-
+      this.boxes = [];
     }
-    for (let item of this.items) {
+    for (let item of this.gitfBoxes) {
       if (item.category == "Valentine" && this.times == 1)
-        this.valen.push(item);
+        this.boxes.push(item);
     }
+    this.title = "Valentine";
     this.times = 2;
-    this.num = 5;
-    console.log(this.valen);
+    this.num = 1;
+    console.log(this.boxes);
   }
 
   gradution() {
+
     if (this.times == 2) {
       this.times = 1;
-      this.grad = [];
+      this.boxes = [];
     }
-    for (let item of this.items) {
+    for (let item of this.gitfBoxes) {
       if (item.category == "Graduation" && this.times == 1)
-        this.grad.push(item);
+        this.boxes.push(item);
     }
+    this.title = "Graduation";
     this.times = 2;
-    this.num = 6;
-    console.log(this.grad);
+    this.num = 1;
+    console.log(this.boxes);
   }
 
   all() {
+
+
     if (this.times == 2) {
-      this.times = 1;
-      this.bday = [];
-      this.wed = [];
-      this.bShower = [];
-      this.valen = [];
-      this.grad = [];
-      this.cMas = [];
+      this.boxes = [];
     }
     this.num = 0;
+    console.log(this.boxes);
   }
 
   //items in the card
-  incNum: number =0;
+  incNum: number = 0;
   price: number = 0;
   addToCart(item: any, idItm: any) {
-   
-    if (item.numItems == 0) {
-      this.i += 1;
-      this.itm = this.i.toString();
-      this.add.push(item);
-      this.incNum=1;
-      item.numItems = 1;
+
+    const custIdJson = localStorage.getItem('id');
+    this.custId = custIdJson !== null ? JSON.parse(custIdJson) : null;
+
+    if (this.custId == null) {
+      this.router.navigate(['/login']);
+    } else {
+
+
+      //this.custId = "112";
+      if (item.selectI == 0) {
+        this.i += 1;
+        this.itm = this.i.toString();
+
+        this.incNum = 1;
+        item.selectI = 1;
+        const AddItem = {
+          cust_id: this.custId, image: item.image, item_title: item.title,
+          category: item.category, item_price: item.item_price, item_description: item.item_descri,
+          size: item.size, availItems: item.availItems
+        }
+        this.add.push(AddItem);
+
+        const addCart = {
+          title: item.title, price: item.item_price, cust_id: this.custId, description: item.item_descri, size: item.size,
+          images: item.image
+        };
+
+        this.cs.addToCart(addCart).
+          subscribe((data: any) => {
+            this.cartError = data
+          });
+      }
+
+
     }
 
-    this.price += item.price;
 
-    localStorage.setItem('price', JSON.stringify(this.price));
-
-    localStorage.setItem('items', JSON.stringify(this.add));
-    console.log(this.add);
   }
-  
-//Add to wish list
+
+
+  //Add to wish list
   addToWish(item: any, idItm: any) {
-   
-    if (item.wish == 0) {
-      this.w += 1;
-      this.wish = this.w.toString();
-      this.wishL.push(item);
-      this.incNum = 2;
-      item.wish=1;     
+
+
+    const custIdJson = localStorage.getItem('id');
+    this.custId = custIdJson !== null ? JSON.parse(custIdJson) : null;
+
+    //this.custId = "112";
+
+    console.log(this.custId);
+
+
+    if (this.custId == null) {
+
+      this.router.navigate(['/login']);
+    } else {
+      if (item.wishI == 0) {
+        const wishItem = {
+          cust_id: this.custId, image: item.image, item_title: item.title,
+          category: item.category, item_price: item.item_price, item_description: item.item_descri, size: item.size
+        }
+
+        this.cs.addwishlist(wishItem).
+          subscribe((data: any) => {
+            this.wishListError = data
+          });
+        console.log(wishItem);
+        console.log(this.wishListError);
+
+        this.w += 1;
+        this.wish = this.w.toString();
+        this.wishL.push(item);
+        this.incNum = 2;
+        item.wishI = 1;
+      }
+      console.log(this.wishL);
     }
+  }
 
-
-    localStorage.setItem('wish', JSON.stringify(this.wishL));
-    
-    console.log(this.wishL);
+  logOut() {
+    localStorage.clear();
+    for (let g of this.gitfBoxes) {
+      this.cs.deleteFromCart(g.cart_id).subscribe();
+    }
+    this.router.navigate(['']);
   }
 }
 

@@ -16,25 +16,42 @@ import { RegisterComponent } from './components/register/register.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { OrderComponent } from "./components/order/order.component";
+import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+
+import { PaymentComponent } from "./components/payment/payment.component";
+import { ViewcustomerComponent } from './components/viewcustomer/viewcustomer.component';
+import { AdminloginComponent } from "./components/adminlogin/adminlogin.component";
+
+import { CanActivateCustomerGuard } from "./guards/can-activate-customer.guard";
+import { CanActivateAdminGuard } from './guards/can-activate-admin.guard';
+import { ReportComponent } from './components/report/report.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'giftboxform', component: GiftBoxFormComponent },
-  { path: 'statisticbox', component: StatisticBoxComponent },
   { path: 'about', component: AboutusComponent },
   { path: 'shop', component: ShoplandingComponent },
   { path: 'contact', component: ContactComponent },
 
-  { path: 'viewbox', component: ViewBoxComponent },
-  { path: 'admindashboard', component: AdminDashboardComponent},
-  { path: 'login' , component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
-  { path: 'wish', component: WishlistComponent},
+  { path: 'adminlogin', component: AdminloginComponent },
+  { path: 'giftboxform', component: GiftBoxFormComponent, canActivate: [CanActivateAdminGuard] },
+  { path: 'statisticbox', component: StatisticBoxComponent, canActivate: [CanActivateAdminGuard] },
+  { path: 'viewbox', component: ViewBoxComponent, canActivate: [CanActivateAdminGuard] },
+  { path: 'admindashboard', component: AdminDashboardComponent, canActivate: [CanActivateAdminGuard] },
+  { path: 'report', component: ReportComponent, /*canActivate: [CanActivateAdminGuard]*/ },
+  { path: 'customer', component: ViewcustomerComponent, canActivate: [CanActivateAdminGuard] },
+  { path: 'payment', component: PaymentComponent, canActivate: [CanActivateAdminGuard] },
 
-  { path: 'checkout', component: CheckoutComponent },
-  { path: 'profile', component: ProfileComponent },
-  
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'wish', component: WishlistComponent, canActivate: [CanActivateCustomerGuard] },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [CanActivateCustomerGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [CanActivateCustomerGuard] },
 
+  { path: 'order', component: OrderComponent, canActivate: [CanActivateCustomerGuard] },
+
+
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

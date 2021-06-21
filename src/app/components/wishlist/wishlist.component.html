@@ -13,40 +13,31 @@
 
             <!-- Links -->
             <ul class="navbar-nav ml-auto">
-                <!--<li class="nav-item">
-                    <a class="nav-link waves-light" mdbWavesEffect title="Shop Now"
-                        style="text-decoration: underline; color: #dd69f1d8;">
-                        Shop<span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="../register" class="nav-link waves-light" mdbWavesEffect title="Sign Up">Sign Up
-                    </a>
-                </li>
+                <div mdbDropdownToggle>
+                    <div style="float: right;  position: absolute;
+                    top: 10px; right: 100px;" class="line" *ngIf="custId != null">
+                    <a class="nav-link">
+                        <div class="btn-group" mdbDropdown>
+                            <div mdbDropdownToggle>
+                                {{custName}}<i class="fas fa-chevron-down icon"></i>
+                            </div>
 
-                <li class="nav-item">
-                    <a routerLink="../login" lass="nav-link waves-light" mdbWavesEffect title="Sign In">
-                        Sign In
+                            <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+                                <a routerLink="../profile" class="dropdown-item">Profile</a>
+                                <a routerLink="../shop" class="dropdown-item">Shop</a>
+                                <div class="divider dropdown-divider"></div>
+                                <button class="dropdown-item btn-logOut" (click)="logOut()">Log-out</button>
+                            </div>
+                        </div>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link waves-light" mdbWavesEffect title="Cart">
-                        Cart
-                    </a>
-                </li>-->
+                </div>
+                </div>
                 <li class="nav-item">
                     <a routerLink="../checkout" class="nav-link waves-light" mdbWavesEffect title="Cart">
                         <img src="assets/cart.png" alt="Cart" width="40" height="40" style="float: right;  position: absolute;
                             top: 20px; right: 32px;" class="line"><span>{{itm}} </span>
                     </a>
                 </li>
-                <!--<li class="nav-item">
-                    <a routerLink="../wish" class="nav-link waves-light" mdbWavesEffect title="Cart">
-                        <!--   {{itm}} --
-                        <img src="assets/wish.png" alt="Cart" width="40" height="40" style="float: right;  position: absolute;
-                            top: 20px; right: 100px;" class="line"><span class="spanWish">{{wish}}</span>
-                    </a>
-                </li>-->
 
             </ul>
             <!-- Links -->
@@ -76,6 +67,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a routerLink="../order" class="nav-link waves-light" mdbWavesEffect id="mycont"
+                        title="View Your Order">
+                        View Order
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a routerLink="../about" class="nav-link waves-light" mdbWavesEffect title="Go to About">
                         About Us
                     </a>
@@ -100,7 +97,7 @@
                 <div class="mask rgba-black-strong flex-center">
                     <div class="container">
                         <div class="white-text text-center wow fadeInUp">
-                            <h2>Your Available</h2>
+                            <h2 class="mainTitle">Your Available</h2>
                             <h2>Wish List</h2>
 
 
@@ -149,7 +146,7 @@
 
                                         Category: {{item.category}}
                                         <br>
-                                        Price: R{{item.price}}
+                                        Price: R{{item.item_price}}
                                     </p>
 
 
@@ -160,17 +157,17 @@
                                     </button>
 
                                     <button type="button" class="cancel" style="outline: none;"
-                                        (click)="removeFromList(userID)" title="Remove From Cart"><i
+                                        (click)="removeFromList(item.wish_id, userID)" title="Remove From Cart"><i
                                             class="fa fa-times-circle" aria-hidden="true"></i></button>
 
                                 </mdb-card-body>
                             </mdb-card>
                             <!-- Card -->
 
-                           
+
 
                         </div>
-                         
+
                     </div>
                 </div>
             </div>
@@ -179,30 +176,6 @@
 
         <!--All Items-->
 
-
-        <!--Nothing to display --
-        <div *ngIf="this.num == 1">
-            <p align="center" style="color: #dda5e7; font-family: cursive; font-size: 34px;">Your Wish List Is Empty
-            </p>
-            <form action="" align="center">
-                <button routerLink="../shop" class="shopBtn">SHOP NOW</button>
-            </form>
-            <br><br><br>
-        </div>
-        
-    <!--Nothing to display --
-
-      <!--Nothing to display --
-      <div *ngIf="items.length == 0">
-        <p align="center" style="color: #dda5e7; font-family: cursive; font-size: 34px;">Your Wish List Is Empty
-        </p>
-        <form action="" align="center">
-            <button routerLink="../shop" class="shopBtn">SHOP NOW</button>
-        </form>
-        <br><br><br>
-    </div>
-    
-<!--Nothing to display -->
     </main>
     <!--Main Layout-->
 
@@ -233,7 +206,7 @@
                     TUT Soshanguve
                 </div>
                 <div class="col" style="margin-top: 10px;">
-                    Phone: +
+                    Phone: +011 000 0992
                 </div>
                 <div class="col" style="margin-top: 10px;">
                     Email: www.giftbox.ac.za
@@ -257,11 +230,11 @@
 
         </div>
         <div class="tAndC">
+
             <ul>
-                <h5 style="font-size: 20px; padding-left: 20px;">Follow Us</h5>
-                <li><a href=""><i class="fab fa-facebook-square"></i></a></li>
-                <li><a href=""><i class="fab fa-twitter-square"></i></a></li>
-                <li><a href=""><i class="fab fa-instagram-square"></i></a></li>
+                <li><a href="https://web.facebook.com/?_rdc=1&_rdr"><i class="fab fa-facebook-square"></i></a></li>
+                <li><a href="https://twitter.com/?lang=en"><i class="fab fa-twitter-square"></i></a></li>
+                <li><a href="https://www.instagram.com/"><i class="fab fa-instagram-square"></i></a></li>
             </ul>
         </div>
 
